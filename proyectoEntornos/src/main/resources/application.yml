@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: proyectoEntornos
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/userLogsE1?serverTimezone=UTC}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:MAISICUAL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+server:
+  port: ${SERVER_PORT:9002}
+
+debug: true
+
+logging:
+  level:
+    root: INFO

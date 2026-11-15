@@ -1,0 +1,32 @@
+services:
+  user_logs_app:
+    image: nikolaspedrozo/user_logs_app
+    container_name: userLogsApp
+    ports:
+      - "9002:9002"
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/userLogsE1?serverTimezone=UTC
+      DB_USERNAME: root
+      DB_PASSWORD: MAISICUAL
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.4
+    container_name: userLogsDB
+    environment:
+      MYSQL_DATABASE: userLogsE1
+      MYSQL_ROOT_PASSWORD: MAISICUAL
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
