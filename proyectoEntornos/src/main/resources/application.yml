@@ -20,7 +20,7 @@ springdoc:
     path: /swagger-ui.html
 
 server:
-  port: ${SERVER_PORT:9002}
+  port: 9002
 
 debug: true
 
